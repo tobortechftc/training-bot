@@ -6,16 +6,14 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class Pusher {
 
     Servo pusher;
-    final Core core;
+
 
     final static double PUSHER_INIT = 0.63;
     final static double PUSHER_UP = 0.78;
     final static double PUSHER_DOWN = 0.44;
+    public Pusher(){
 
-    public Pusher(Core c) {
-        core = c;
     }
-
     public void init(HardwareMap hwMap) {
         pusher = hwMap.servo.get("sv_r_kicker"); // should be pusher, not sv_r_pusher
 

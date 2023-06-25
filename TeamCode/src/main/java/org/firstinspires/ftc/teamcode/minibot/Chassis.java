@@ -18,10 +18,9 @@ public class Chassis {
 
     DcMotor motorRight;
     DcMotor motorLeft;
-    final Core core;
 
-    public Chassis(Core c) {
-        core = c;
+    public Chassis(){
+
     }
 
     BNO055IMU imu;
@@ -45,7 +44,6 @@ public class Chassis {
     final static double WHEEL_TURN_COMPLETE = 6.63;  // number of wheel turns to get chassis 360-degree turn
     final static double IMU_ROTATION_RATIO_L = 0.80; // 0.84; // ratio of IMU Sensor Left turn to prevent overshooting the turn.
     final static double IMU_ROTATION_RATIO_R = 0.80; // 0.84; // ratio of IMU Sensor Right turn to prevent overshooting the turn.
-
 
     public void init(HardwareMap hwMap) {
         motorLeft = hwMap.dcMotor.get("left_drive"); // should be motorLeft, not left_drive
@@ -199,9 +197,7 @@ public class Chassis {
         motorLeft.setPower(power);
         motorRight.setPower(power);
         long timeStart = System.currentTimeMillis();
-        while (System.currentTimeMillis() - timeStart < time) {
-            core.yield();
-        }
+
         stop_chassis();
     }
 
@@ -242,13 +238,7 @@ public class Chassis {
         ElapsedTime runtime = new ElapsedTime();
         drive_power(leftPower, rightPower);
         runtime.reset();
-        while (!have_drive_encoders_reached(leftCnt, rightCnt) && (runtime.seconds() < 5)) {
-            drive_power(leftPower, rightPower);
 
-            //**************The line*****************
-            core.yield();
-            //***************************************
-        }
         stop_chassis();
     }
 

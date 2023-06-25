@@ -6,13 +6,12 @@ public class Robot {
     public Chassis chassis;
     public Kicker kicker;
     public Pusher pusher;
-    public Core core;
 
     public Robot() {
-        core = new Core();
-        chassis = new Chassis(core);
-        kicker = new Kicker(core);
-        pusher = new Pusher(core);
+
+        chassis = new Chassis();
+        kicker = new Kicker();
+        pusher = new Pusher();
 
     }
 
