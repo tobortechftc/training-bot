@@ -8,11 +8,12 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class Kicker {
     Servo kicker;
 
-    final static double KICKER_INIT = 0.558;
-    final static double KICKER_UP = 0.46;
-    final static double KICKER_DOWN = 0.71;
-
+    final static double KICKER_INIT = 0;
+    final static double KICKER_UP = 0;
+    final static double KICKER_DOWN = 0.3;
+    private boolean isKickerUp;
     public Kicker(){
+
 
     }
 

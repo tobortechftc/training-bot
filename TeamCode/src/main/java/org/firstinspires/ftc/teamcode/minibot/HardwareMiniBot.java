@@ -53,6 +53,10 @@ public class HardwareMiniBot { // extends LinearOpMode {
     final static double R_KICKER_INIT = 0.63;
     final static double R_KICKER_UP = 0.78;
     final static double R_KICKER_DOWN = 0.44;
+    final static double KICKER_INIT = 0;
+    final static double KICKER_UP = 0;
+    final static double KICKER_DOWN = 0.3;
+    private boolean isKickerUp;
 
     final static double ELBOW_INIT = 0.5;
     final static double SHOULDER_INIT = 0.5;
@@ -491,6 +495,25 @@ public class HardwareMiniBot { // extends LinearOpMode {
             return true;
         }
         return false;
+    }
+
+
+    public void autoKicker() {
+        if (isKickerUp)
+            closeKicker();
+        else{
+            openKicker();
+        }
+    }
+
+    public void openKicker() {
+        isKickerUp = true;
+        sv_l_kicker.setPosition(KICKER_UP);
+    }
+
+    public void closeKicker() {
+        isKickerUp = false;
+        sv_l_kicker.setPosition(KICKER_DOWN);
     }
 
     void l_kicker_up() {
