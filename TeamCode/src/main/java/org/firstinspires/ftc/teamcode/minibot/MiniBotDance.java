@@ -20,6 +20,24 @@ public class MiniBotDance extends LinearOpMode {
         if (opModeIsActive()) {
             //Do the auto dance here
             robot.stop_chassis();
+            robot.drive_forward(0, 6);
+            robot.Turn_Left(0.15, 1);
+            robot.drive_forward(0,0.5);
+            robot.Turn_Left(-0.10, 1.75);
+            robot.Turn_Left(0.15, 1.5);
+            robot.drive_forward(0, 0.5);
+            robot.Turn_Right(0.5, 0.25);
+            robot.Turn_Left(0.5, 0.25);
+            robot.Turn_Right(0.5, 0.25);
+            robot.Turn_Left(0.5, 0.25);
+            robot.Turn_Right(0.5, 0.25);
+            robot.Turn_Left(0.5, 0.25);
+            robot.Turn_Right(0.5, 0.25);
+            robot.Turn_Left(0.5, 0.25);
+            robot.Turn_Right(0.5, 1.75);
+            robot.Turn_Left(0.5, 1.75);
+            robot.drive_forward(0.15,1);
+            robot.drive_forward(-0.15,1);
         }
 
     }
