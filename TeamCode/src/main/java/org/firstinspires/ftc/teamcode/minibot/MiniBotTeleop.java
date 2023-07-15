@@ -173,11 +173,11 @@ public class MiniBotTeleop extends LinearOpMode {
                 robot.autoKicker();
             }
             if (gamepad2.dpad_up) {
-                robot.driveByTime(0.5,3,0);
+                robot.drive_forward(0.5, 2);
             }
             if (gamepad2.dpad_left) {
                 //This should rotate close to 90 degrees
-                robot.driveByTime(0.5,0.5,1);
+                robot.Turn_Left(0.5, 2);
             }
             telemetry.addData("left/right motor  =", "%.2f/%.2f", left,right);
             // telemetry.addData("prev left/right y  =", "%.2f/%.2f", prev_left_y,prev_right_y);

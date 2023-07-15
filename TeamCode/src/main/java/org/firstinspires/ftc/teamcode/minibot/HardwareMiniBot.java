@@ -453,6 +453,10 @@ public class HardwareMiniBot { // extends LinearOpMode {
      *
      * 0.5s should rotate roughly 90 degrees at 0.5 power. This rule should be able to be extended with an inverse relationship (e.g. 1.0 power roughly corrolates to 0.25s).
      * This is only for the "dance" movement and cannot be expected to be positionally accurate as it is based upon time.
+     *
+     * rotation 0 = drive forward/back
+     * rotation 1 = turn left
+     * rotation 2 = turn right
      */
     public void driveByTime(double power, double seconds, int rotation) {
         ElapsedTime runtime = new ElapsedTime();
@@ -474,6 +478,47 @@ public class HardwareMiniBot { // extends LinearOpMode {
 
         }
     }
+
+    public void drive_forward(double power, double seconds){
+        ElapsedTime runtime = new ElapsedTime();
+        double leftPower = power;
+        double rightPower = power;
+        reset_chassis();
+        while (runtime.seconds() <= seconds) {
+            leftMotor.setPower(leftPower);
+            rightMotor.setPower(rightPower);
+
+        }
+    }
+
+    public void Turn_Left(double power, double seconds){
+        ElapsedTime runtime = new ElapsedTime();
+        double leftPower = power;
+        double rightPower = power;
+        reset_chassis();
+        while (runtime.seconds() <= seconds) {
+            leftMotor.setPower(-leftPower);
+            rightMotor.setPower(rightPower);
+
+        }
+    }
+
+    public void Turn_Right(double power, double seconds){
+        ElapsedTime runtime = new ElapsedTime();
+        double leftPower = power;
+        double rightPower = power;
+        reset_chassis();
+        while (runtime.seconds() <= seconds) {
+            leftMotor.setPower(leftPower);
+            rightMotor.setPower(-rightPower);
+
+        }
+    }
+
+//    public void danceRoutine() {
+//        driveByTime(0.5, );
+//
+//    }
 
     public void StraightR(double power, double n_rotations) throws InterruptedException {
         straight_mode = true;
@@ -546,27 +591,5 @@ public class HardwareMiniBot { // extends LinearOpMode {
         sv_l_kicker.setPosition(KICKER_DOWN);
     }
 
-    void l_kicker_up() {
-        if (sv_l_kicker == null)
-            return;
-        sv_l_kicker.setPosition(L_KICKER_UP);
-    }
 
-    void l_kicker_down() {
-        if (sv_l_kicker == null)
-            return;
-        sv_l_kicker.setPosition(L_KICKER_DOWN);
-    }
-
-    void r_kicker_up() {
-        if (sv_r_kicker == null)
-            return;
-        sv_r_kicker.setPosition(R_KICKER_UP);
-    }
-
-    void r_kicker_down() {
-        if (sv_r_kicker == null)
-            return;
-        sv_r_kicker.setPosition(R_KICKER_DOWN);
-    }
 }
