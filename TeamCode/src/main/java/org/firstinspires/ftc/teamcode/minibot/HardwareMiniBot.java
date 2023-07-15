@@ -7,6 +7,7 @@ import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -53,9 +54,12 @@ public class HardwareMiniBot { // extends LinearOpMode {
     final static double R_KICKER_INIT = 0.63;
     final static double R_KICKER_UP = 0.78;
     final static double R_KICKER_DOWN = 0.44;
-    final static double KICKER_INIT = 0;
-    final static double KICKER_UP = 0;
-    final static double KICKER_DOWN = 0.3;
+
+    final static ServoModifier servoModifier = new ServoModifier();
+
+    final static double KICKER_INIT = servoModifier.getInitPos();
+    final static double KICKER_UP = servoModifier.getUpPos();
+    final static double KICKER_DOWN = servoModifier.getDownPos();
     private boolean isKickerUp;
 
     final static double ELBOW_INIT = 0.5;
@@ -159,7 +163,7 @@ public class HardwareMiniBot { // extends LinearOpMode {
         }
         //if (use_kicker) {
         sv_l_kicker = hwMap.servo.get("sv_l_kicker");
-        sv_l_kicker.setPosition(L_KICKER_INIT);
+        sv_l_kicker.setPosition(KICKER_INIT);
         sv_r_kicker = hwMap.servo.get("sv_r_kicker");
         sv_r_kicker.setPosition(R_KICKER_INIT);
         //}
@@ -515,9 +519,27 @@ public class HardwareMiniBot { // extends LinearOpMode {
         }
     }
 
-//    public void danceRoutine() {
-//        driveByTime(0.5, );
+    public void driveForwardByEncoder (double power, double distance) throws InterruptedException {
+        int leftEncoder = 0;
+        int rightEncoder = 0;
+
+
+        int target = (int) (ONE_ROTATION / 11.873736);
+
+        StraightR(0.5, target);
+    }
+
+//        leftMotor.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
+//        rightMotor.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
 //
+//        leftMotor.setTargetPosition((int)(distance*(ONE_ROTATION/11.873736)));
+//        rightMotor.setTargetPosition((int)(distance*(ONE_ROTATION/11.873736)));
+//
+//        while ( (leftEncoder+rightEncoder)/2 < target) {
+//            leftMotor.setPower(power);
+//            rightMotor.setPower(power);
+//        }
+//        stop_chassis();
 //    }
 
     public void StraightR(double power, double n_rotations) throws InterruptedException {
@@ -590,6 +612,4 @@ public class HardwareMiniBot { // extends LinearOpMode {
         isKickerUp = false;
         sv_l_kicker.setPosition(KICKER_DOWN);
     }
-
-
 }
