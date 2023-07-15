@@ -445,6 +445,36 @@ public class HardwareMiniBot { // extends LinearOpMode {
         driveTT(0, 0);
     }
 
+    /**
+     *
+     * @param power
+     * @param seconds
+     * @param rotation
+     *
+     * 0.5s should rotate roughly 90 degrees at 0.5 power. This rule should be able to be extended with an inverse relationship (e.g. 1.0 power roughly corrolates to 0.25s).
+     * This is only for the "dance" movement and cannot be expected to be positionally accurate as it is based upon time.
+     */
+    public void driveByTime(double power, double seconds, int rotation) {
+        ElapsedTime runtime = new ElapsedTime();
+        double leftPower = power;
+        double rightPower = power;
+
+        reset_chassis();
+
+        if (rotation == 1) {
+            leftPower*=-1;
+        }
+        else if (rotation == 2) {
+            rightPower*=-1;
+        }
+
+        while (runtime.seconds() <= seconds) {
+            leftMotor.setPower(leftPower);
+            rightMotor.setPower(rightPower);
+
+        }
+    }
+
     public void StraightR(double power, double n_rotations) throws InterruptedException {
         straight_mode = true;
         reset_chassis();
