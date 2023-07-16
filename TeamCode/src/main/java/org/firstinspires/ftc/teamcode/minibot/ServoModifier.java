@@ -34,11 +34,10 @@ public class ServoModifier {
      *
      * Be sure you set the correct robotIndex before download to ensure you are downloading the correct team's code.
      */
-    private int robotIndex = 0; //Change this before download to ensure you are downloading the correct values
-    private double[] initPos = {0,0,0};
-    private double[] upPos = {0,0,0};
-    private double[] downPos = {0,0,0};
-
+    private int robotIndex = 2; //Change this before download to ensure you are downloading the correct values
+    private double[] initPos = {0.9,0,0};
+    private double[] upPos = {0.7,0.5,0.15};
+    private double[] downPos = {1,0,0};
     //Do not touch below here
     public void setRobot(int i) {
         robotIndex = i;

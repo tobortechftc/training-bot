@@ -606,10 +606,32 @@ public class HardwareMiniBot { // extends LinearOpMode {
     public void openKicker() {
         isKickerUp = true;
         sv_l_kicker.setPosition(KICKER_UP);
+        try {
+            sleep(50);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void closeKicker() {
         isKickerUp = false;
         sv_l_kicker.setPosition(KICKER_DOWN);
+        try {
+            sleep(50);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
+    public void kickerInc(boolean wristFast, boolean isUp) {
+        double pos = 0.0;
+        if(isUp)
+            pos = sv_l_kicker.getPosition() + (wristFast?0.05:.001);
+        else
+            pos = sv_l_kicker.getPosition() - (wristFast?0.05:.001);
+
+        if ( pos <= 1 && pos >= 0) {
+            sv_l_kicker.setPosition(pos);
+        }
+    }
+
 }
