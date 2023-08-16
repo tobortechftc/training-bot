@@ -7,7 +7,7 @@ public class Claw {
     Servo claw;
 
     final static double CLAW_CLOSED = 0;
-    final static double CLAW_OPEN = 0.3;
+    final static double CLAW_OPEN = 0.3; //change this
     final static double CLAW_INIT = CLAW_OPEN;
     private boolean isClawOpen;
 
