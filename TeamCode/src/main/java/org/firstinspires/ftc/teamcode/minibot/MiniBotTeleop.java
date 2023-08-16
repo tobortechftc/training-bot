@@ -31,14 +31,8 @@ TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 package org.firstinspires.ftc.teamcode.minibot;
-import android.util.Log;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.util.Range;
-
-
-import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 /**
  * This OpMode uses the common Pushbot hardware class to define the devices on the robot.
@@ -149,8 +143,10 @@ public class MiniBotTeleop extends LinearOpMode {
                 left *=0.5;
                 right *=0.5;
             }
+
             robot.leftMotor.setPower(left);
             robot.rightMotor.setPower(right);
+
             if (gamepad1.y && (speedscale<1.0)) {
                 speedscale += 0.05;
                 sleep(80);
@@ -159,26 +155,29 @@ public class MiniBotTeleop extends LinearOpMode {
                 speedscale -= 0.05;
                 sleep(80);
             }
-            if (gamepad1.x) {
-                robot.autoKicker();
-            }
-            if (gamepad1.left_trigger>0.1) {
-                robot.closeKicker();
+
+            if (gamepad1.x)
+                robot.clawAuto();
+
+            if (gamepad1.left_trigger > 0.1) {
+                robot.clawClose();
             } else if (gamepad1.left_bumper) {
-                robot.autoKicker();
+                robot.clawAuto();
             }
-            if (gamepad1.right_trigger>0.1) {
-                robot.openKicker();
+
+            if (gamepad1.right_trigger > 0.1) {
+                robot.clawOpen();
             } else if (gamepad1.right_bumper) {
-                robot.autoKicker();
+                robot.clawAuto();
             }
-            if (gamepad2.dpad_up) {
-                robot.kickerInc(true, false);
-            }
-            if (gamepad2.dpad_left) {
-                //This should rotate close to 90 degrees
-                robot.kickerInc(true, true);
-            }
+
+            if (gamepad1.dpad_right)
+                robot.clawInc(true, true);
+
+            if (gamepad1.dpad_left)
+                robot.clawInc(true, true);
+
+
             telemetry.addData("left/right motor  =", "%.2f/%.2f", left,right);
             // telemetry.addData("prev left/right y  =", "%.2f/%.2f", prev_left_y,prev_right_y);
             telemetry.addData("left/right counter =", "%d/%d", left_event_counter, right_event_counter);

@@ -4,20 +4,20 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class Robot {
     public Chassis chassis;
-    public Kicker kicker;
+    public Claw claw;
     public Pusher pusher;
 
     public Robot() {
 
         chassis = new Chassis();
-        kicker = new Kicker();
+        claw = new Claw();
         pusher = new Pusher();
 
     }
 
     public void init(HardwareMap hwMap) {
         chassis.init(hwMap);
-        kicker.init(hwMap);
+        claw.init(hwMap);
         pusher.init(hwMap);
     }
 }
